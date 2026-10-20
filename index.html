@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Advanced Engineering Mathematics Lab</title>
+<script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.min.js" async></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.35.2/plotly.min.js"></script>
+<style>
+:root{--bg:#16257a;--pn:#233596;--pn2:#2f45b8;--tx:#ffffff;--mu:#d3dcff;--cy:#4ff0ff;--bl:#7a94ff;--or:#ffa229;--mg:#ff5cb0;--gr:rgba(190,205,255,.25);--ok:#4dffa8;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#eef2ff;--pn:#fff;--pn2:#e0e8ff;--tx:#0b1535;--mu:#41507d;--cy:#0369a1;--or:#c2410c;--mg:#be185d;--ok:#047857;--bl:#2744c4;--gr:rgba(30,60,160,.16)}}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;font:15px/1.6 system-ui,Segoe UI,Roboto,sans-serif;color:var(--tx);background:linear-gradient(var(--gr) 1px,transparent 1px) 0 0/28px 28px,linear-gradient(90deg,var(--gr) 1px,transparent 1px) 0 0/28px 28px,var(--bg)}
+header{padding:14px 18px 0;border-bottom:3px solid #ffa229;background:linear-gradient(100deg,#2f4bff,#00a6e6 55%,#8a3dff);color:#fff}
+h1{margin:0;font:700 20px/1.2 Georgia,serif;color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.35)}header small{color:#eaf0ff}
+#tabs{display:flex;gap:4px;overflow-x:auto;margin-top:10px}
+#tabs button{flex:none;background:rgba(255,255,255,.2);border:0;color:#fff;padding:9px 14px;font:inherit;cursor:pointer;border-radius:8px 8px 0 0;margin-right:2px}
+#tabs button.on{background:#fff;color:#c2410c;font-weight:700}
+main{max-width:1100px;margin:auto;padding:16px}
+.tab{display:none}.tab.on{display:block}
+.c,details{background:var(--pn);border:1px solid var(--gr);border-left:4px solid var(--bl);border-radius:6px;padding:14px;margin:0 0 14px}
+details>summary{cursor:pointer;font-weight:700;color:var(--cy)}
+.g{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:10px 0}
+.s{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-bottom:14px}
+.s div{background:var(--pn2);border-top:3px solid var(--or);padding:10px;border-radius:4px}.s b{display:block;font-size:24px;color:var(--cy)}
+label{font-size:12px;color:var(--mu);display:block}
+input,select,textarea,button.b{width:100%;background:var(--bg);color:var(--tx);border:1px solid var(--bl);border-radius:4px;padding:7px;font:inherit}
+textarea{min-height:90px;font-family:ui-monospace,monospace;font-size:13px}
+button.b{background:linear-gradient(90deg,var(--or),var(--mg));color:#fff;border-color:transparent;font-weight:700;cursor:pointer;width:auto;padding:8px 16px;margin:2px 4px 2px 0}
+button.b.x{background:none;color:var(--cy);border-color:var(--cy)}
+.pl{height:340px}table{border-collapse:collapse;width:100%;font-size:13px}
+.tw{overflow-x:auto;max-height:300px}th{background:var(--pn2);color:var(--cy);position:sticky;top:0}td,th{padding:4px 8px;border-bottom:1px solid var(--gr);text-align:right}td:first-child,th:first-child{text-align:left}
+pre{background:var(--bg);padding:10px;overflow:auto;max-height:280px;font-size:12px;border-radius:4px}
+.bar{height:12px;background:var(--pn2);border-radius:6px;overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--cy),var(--mg),var(--or))}
+.w{color:var(--or)}.ok{color:var(--ok)}.in{border-left-color:var(--or);background:var(--pn2)}
+.rm{display:grid;grid-template-columns:1fr 150px;gap:8px;align-items:center;padding:6px 0;border-bottom:1px solid var(--gr)}
+.q button{display:block;width:100%;text-align:left;margin:4px 0;padding:8px;background:var(--pn2);color:var(--tx);border:1px solid var(--bl);border-radius:4px;cursor:pointer;font:inherit}
+.gl{display:flex;gap:8px;padding:8px 0;border-bottom:1px solid var(--gr)}.gl b{color:var(--cy)}
+#toast{display:none;position:fixed;bottom:calc(14px + env(safe-area-inset-bottom,0px));left:14px;right:14px;max-width:520px;margin:auto;padding:10px 14px;border-radius:6px;color:#fff;z-index:9}
+h3{color:var(--or);margin:14px 0 4px}code{background:var(--bg);padding:1px 5px;border-radius:3px;color:var(--cy)}.c{border-left-color:var(--cy)}details{border-left-color:var(--mg)}details[open]>summary{color:var(--or)}.s div:nth-child(2n){border-top-color:var(--cy)}.s div:nth-child(3n){border-top-color:var(--mg)}.s b{text-shadow:0 0 10px rgba(0,229,255,.4)}th{color:var(--or)}
+.fm{overflow-x:auto;overflow-y:hidden;padding:4px 12px;margin:8px 0;background:var(--pn2);border-left:3px solid var(--or);border-radius:4px}
+.fm mjx-container[display="true"]{margin:.55em 0!important}
+mjx-container[display="true"]{max-width:100%;overflow-x:auto;overflow-y:hidden}
+td mjx-container,th mjx-container,button mjx-container{display:inline-block!important;margin:0!important}
+</style></head><body>
+<header><h1>ADVANCED ENGINEERING MATHEMATICS &amp; COMPUTATIONAL METHODS</h1><small>Interactive Engineering Learning Lab · semua angka dihitung oleh fungsi JavaScript nyata</small><div id="tabs"></div></header>
+<main>
+<section class="tab" id="t-home">
+<div class="s" id="stats"></div>
+<div class="c"><b>Progres keseluruhan</b><div class="bar"><i id="pb"></i></div></div>
+<div class="c"><b>Roadmap belajar</b> <small class="w">(ubah status tiap tahap)</small><div id="rm"></div></div>
+<div class="c"><b>Akses cepat</b><div id="qa"></div></div>
+<div class="g"><div class="c"><b>Topik terakhir dikunjungi</b><div id="rv"></div></div><div class="c"><b>Formula / istilah ber-bookmark</b><div id="bm"></div></div></div>
+<div class="c"><b>Catatan belajar</b><textarea id="notes" placeholder="Tulis catatan di sini. Tersimpan otomatis di browser."></textarea></div>
+<div class="c"><b>Simpan, muat, reset</b><div><button class="b" onclick="exp()">Ekspor JSON</button><button class="b x" onclick="imp()">Impor JSON</button><button class="b x" id="rs" onclick="rst()">Reset progres</button></div><textarea id="jx" placeholder="Hasil ekspor muncul di sini (salin &amp; simpan). Untuk impor: tempel JSON lalu klik Impor."></textarea></div>
+</section>
+
+<section class="tab" id="t-run"><div class="c"><h3>Cara menjalankan dashboard</h3>
+<p><b>Opsi 1 – langsung dari tautan ini.</b> Cukup buka halaman ini di browser modern (Chrome, Edge, Firefox, Safari). Tidak perlu instalasi, server, atau Node.js.</p>
+<p><b>Opsi 2 – offline di komputer.</b> Salin seluruh kode halaman ke file bernama <code>index.html</code>, lalu klik dua kali file itu. Perlu internet saat pertama dibuka untuk memuat pustaka Plotly (grafik) dan MathJax (rumus).</p>
+<h3>Langkah belajar yang disarankan</h3>
+<ol><li>Buka tab <b>Lab Interaktif</b>, pilih satu modul (klik judulnya untuk membuka).</li><li>Ubah parameter (misalnya step size h), klik <b>Hitung</b>, lihat tabel dan grafik.</li><li>Baca bagian <b>Makna teknik</b> untuk memahami artinya.</li><li>Cek istilah asing di tab <b>Glosarium</b>, uji diri di tab <b>Kuis</b>.</li><li>Tandai tahap yang sudah selesai di Dashboard.</li></ol>
+<h3>Cara menulis fungsi</h3><p>Gunakan <code>x^2</code>, <code>sin(x)</code>, <code>cos(x)</code>, <code>exp(x)</code>, <code>log(x)</code> (logaritma natural), <code>sqrt(x)</code>, <code>abs(x)</code>, <code>pi</code>. Contoh: <code>x^3 - 2*x - 5</code>. Perkalian harus ditulis dengan <code>*</code>.</p>
+<h3>Jika ada masalah</h3><ul><li><b>Grafik tidak muncul:</b> pustaka Plotly gagal dimuat (internet mati/diblokir). Tabel angka tetap berfungsi. Muat ulang halaman setelah online.</li><li><b>Rumus tampil sebagai teks aneh:</b> MathJax belum termuat; maknanya tetap dijelaskan dalam kalimat.</li><li><b>Pesan merah muncul:</b> ekspresi tidak valid atau syarat metode tidak terpenuhi; baca pesannya.</li><li><b>Progres hilang:</b> data tersimpan di localStorage browser. Mode private atau hapus data situs akan menghapusnya. Gunakan Ekspor JSON sebagai cadangan.</li></ul></div></section>
+
+<section class="tab" id="t-lab">
+<details open><summary>1. Persamaan Diferensial Orde-1: Euler vs Heun vs Runge-Kutta 4</summary>
+<p>Menyelesaikan \(\dfrac{dy}{dt}=f(t,y)\) dengan langkah \(h\). Semakin kecil \(h\), semakin akurat, tetapi semakin banyak perhitungan.</p>
+<div class="fm"><b>Euler</b> (orde-1)
+\[ y_{n+1}=y_n+h\,f(t_n,y_n) \]
+<b>Heun</b> (orde-2)
+\[ y_{n+1}=y_n+\frac{1}{2}\,(k_1+k_2),\qquad k_1=h\,f(t_n,y_n),\quad k_2=h\,f(t_n+h,\;y_n+k_1) \]
+<b>Runge&ndash;Kutta 4</b> (orde-4)
+\[ y_{n+1}=y_n+\frac{1}{6}\,(k_1+2k_2+2k_3+k_4) \]
+\[ \begin{aligned} k_1&=h\,f(t_n,\,y_n), & k_2&=h\,f\!\left(t_n+\frac{h}{2},\,y_n+\frac{k_1}{2}\right),\\ k_3&=h\,f\!\left(t_n+\frac{h}{2},\,y_n+\frac{k_2}{2}\right), & k_4&=h\,f(t_n+h,\,y_n+k_3) \end{aligned} \]</div>
+<div class="g"><label>f(t,y)<input id="o_f" value="-2*y + sin(t)"></label><label>y(0)<input id="o_y" value="1"></label><label>Durasi T<input id="o_T" value="5"></label><label>Step h<input id="o_h" value="0.25"></label><label>Solusi analitik y(t) (opsional)<input id="o_a" value="1.2*exp(-2*t) + (2*sin(t) - cos(t))/5"></label></div>
+<button class="b" onclick="run(ode1)">Hitung</button><div id="o1" class="pl"></div><div id="o1t" class="tw"></div>
+<p class="c in"><b>Makna teknik:</b> Euler orde-1 cepat tetapi galatnya besar. RK4 orde-4 jauh lebih akurat pada h yang sama. Jika h terlalu besar untuk sistem yang meluruh cepat, Euler bisa tidak stabil. Catatan: solusi analitik bawaan hanya cocok untuk contoh default; ganti atau kosongkan jika mengubah f.</p></details>
+
+<details><summary>2. Getaran Teredam (Mass-Spring-Damper): sistem ODE orde-2</summary>
+<p>\(m\ddot x + c\dot x + kx = 0\) diubah menjadi sistem orde-1 dengan variabel \(x\) dan \(v\). Referensi analitik tersedia untuk kasus underdamped (rasio redaman \(\zeta&lt;1\)).</p>
+<div class="fm">\[ \dot x=v,\qquad \dot v=-\frac{c\,v+k\,x}{m} \]
+\[ x(t)=e^{-\zeta\omega_n t}\left[x_0\cos\omega_d t+\frac{v_0+\zeta\omega_n x_0}{\omega_d}\sin\omega_d t\right],\qquad \omega_d=\omega_n\sqrt{1-\zeta^{2}} \]</div>
+<div class="g"><label>massa m (kg)<input id="v_m" value="1"></label><label>redaman c (N·s/m)<input id="v_c" value="0.5"></label><label>kekakuan k (N/m)<input id="v_k" value="25"></label><label>x(0) (m)<input id="v_x" value="1"></label><label>v(0) (m/s)<input id="v_v" value="0"></label><label>Durasi T (s)<input id="v_T" value="6"></label><label>Step h<input id="v_h" value="0.05"></label></div>
+<button class="b" onclick="run(osc)">Simulasikan</button><div id="o2" class="pl"></div><div id="o2t"></div>
+<p class="c in"><b>Makna teknik:</b> frekuensi alami \(\omega_n=\sqrt{k/m}\) dan rasio redaman \(\zeta=c/(2\sqrt{km})\) menentukan apakah struktur (misalnya sayap pesawat) bergetar lama atau cepat berhenti. Coba \(c=0\) untuk melihat Euler menambah energi secara palsu.</p></details>
+
+<details><summary>3. Integrasi &amp; Diferensiasi Numerik</summary>
+<p>Aturan trapesium dan Simpson \(\tfrac{1}{3}\) dibandingkan dengan nilai eksak (dari antiturunan \(F(x)\) yang Anda isi), dengan \(h=\dfrac{b-a}{n}\) dan \(f_i=f(a+ih)\).</p>
+<div class="fm">\[ \int_a^b f(x)\,dx\approx\frac{h}{2}\left[f_0+2\sum_{i=1}^{n-1}f_i+f_n\right]\qquad\text{(Trapesium)} \]
+\[ \int_a^b f(x)\,dx\approx\frac{h}{3}\left[f_0+4\sum_{i\ \mathrm{ganjil}}f_i+2\sum_{i\ \mathrm{genap}}f_i+f_n\right]\qquad\text{(Simpson }\tfrac{1}{3}\text{)} \]
+\[ f'(x_0)\approx\frac{f(x_0+h)-f(x_0)}{h}\ \text{(forward)},\quad \frac{f(x_0)-f(x_0-h)}{h}\ \text{(backward)},\quad \frac{f(x_0+h)-f(x_0-h)}{2h}\ \text{(central)} \]</div>
+<div class="g"><label>f(x)<input id="i_f" value="sin(x)"></label><label>Antiturunan F(x)<input id="i_F" value="-cos(x)"></label><label>a<input id="i_a" value="0"></label><label>b<input id="i_b" value="pi"></label><label>Jumlah interval n (genap)<input id="i_n" value="6"></label><label>Titik turunan x0<input id="i_x" value="1"></label><label>h turunan<input id="i_h" value="0.1"></label></div>
+<button class="b" onclick="run(integ1)">Hitung</button><div id="o3" class="pl"></div><div id="o3t" class="tw"></div>
+<p class="c in"><b>Makna teknik:</b> galat trapesium turun \(\sim 4\times\) saat \(n\) digandakan (orde-2, \(O(h^2)\)), Simpson \(\sim 16\times\) (orde-4, \(O(h^4)\)). Pada turunan, \(h\) terlalu besar menambah <i>truncation error</i>, \(h\) terlalu kecil memperbesar <i>round-off error</i>.</p></details>
+
+<details><summary>4. Sistem Persamaan Linear: Eliminasi Gauss</summary>
+<p>Menyelesaikan \(A\mathbf{x}=\mathbf{b}\). Masukkan matriks augmented \([A\,|\,\mathbf{b}]\), satu baris per baris, angka dipisah spasi. Contoh 3 persamaan 3 variabel:</p>
+<textarea id="l_m">2 1 -1 8
+-3 -1 2 -11
+-2 1 2 -3</textarea><button class="b" onclick="run(lin)">Selesaikan</button><pre id="o4"></pre>
+<p class="c in"><b>Makna teknik:</b> analisis struktur dan metode elemen hingga menghasilkan \(K u = F\) (kekakuan × perpindahan = gaya). Determinan \(\det(K)\approx 0\) berarti struktur belum tertumpu cukup (mekanisme/rigid body motion).</p></details>
+
+<details><summary>5. Optimisasi: Gradient Descent</summary>
+<p>Mencari titik minimum \(f(x,y)\) dengan bergerak melawan gradien.</p>
+<div class="fm">\[ \mathbf{x}_{k+1}=\mathbf{x}_k-\eta\,\nabla f(\mathbf{x}_k),\qquad \nabla f=\left(\frac{\partial f}{\partial x},\ \frac{\partial f}{\partial y}\right) \]
+dengan \(\eta\) = learning rate.</div>
+<div class="g"><label>f(x,y)<input id="p_f" value="(x-1)^2 + 3*(y+0.5)^2 + 0.5*x*y"></label><label>x awal<input id="p_x" value="-2.5"></label><label>y awal<input id="p_y" value="2.5"></label><label>Learning rate<input id="p_l" value="0.1"></label><label>Iterasi<input id="p_n" value="40"></label></div>
+<button class="b" onclick="run(opt)">Jalankan</button><div id="o5" class="pl"></div><div id="o5t"></div>
+<p class="c in"><b>Makna teknik:</b> dalam desain pesawat, f bisa berupa berat struktur + penalti tegangan. Learning rate terlalu besar (coba 0.4) membuat langkah melompat dan diverges; terlalu kecil membuat sangat lambat.</p></details>
+
+<details><summary>6. Fourier / DFT: Dekomposisi Sinyal &amp; Aliasing</summary>
+<p>Jumlah tiga gelombang sinus, lalu dihitung spektrum frekuensinya dengan DFT.</p>
+<div class="fm">\[ x(t)=\sum_{j=1}^{3}A_j\sin(2\pi f_j t),\qquad X_k=\sum_{n=0}^{N-1}x_n\,e^{-i\,2\pi kn/N},\qquad \text{amplitudo}=\frac{2\,|X_k|}{N} \]</div>
+<div class="g"><label>A1<input id="f_a1" value="1"></label><label>f1 (Hz)<input id="f_f1" value="5"></label><label>A2<input id="f_a2" value="0.6"></label><label>f2 (Hz)<input id="f_f2" value="12"></label><label>A3<input id="f_a3" value="0.3"></label><label>f3 (Hz)<input id="f_f3" value="30"></label><label>Sampling fs (Hz)<input id="f_s" value="128"></label></div>
+<button class="b" onclick="run(fou)">Analisis</button><div id="o6" class="pl"></div><div id="o6b" class="pl"></div><div id="o6t"></div>
+<p class="c in"><b>Makna teknik:</b> puncak spektrum menunjukkan frekuensi getar dominan struktur. Turunkan \(f_s\) di bawah \(2\times 30\) Hz: puncak 30 Hz akan muncul di frekuensi palsu (aliasing).</p></details>
+<details><summary>7. Regresi Least-Squares (Parameter Estimation)</summary>
+<p>Mencocokkan polinomial ke data ukur dengan meminimalkan jumlah kuadrat galat. Isi data satu baris per titik: x y.</p>
+<div class="fm">\[ p(x)=a_0+a_1x+\dots+a_nx^{n},\qquad \min_{a_0,\dots,a_n}\ \sum_{i}\big(y_i-p(x_i)\big)^{2} \]
+\[ R^{2}=1-\frac{SS_{res}}{SS_{tot}}=1-\frac{\sum_i (y_i-p(x_i))^{2}}{\sum_i (y_i-\bar y)^{2}} \]</div>
+<div class="g"><label>Derajat polinomial (1–6)<input id="q_n" value="1"></label></div>
+<textarea id="q_d">0 2.1
+1 3.4
+2 5.2
+3 6.4
+4 8.1
+5 9.4
+6 11.2</textarea><button class="b" onclick="run(reg)">Fit data</button><div id="o7" class="pl"></div><div id="o7t"></div>
+<p class="c in"><b>Makna teknik:</b> dipakai untuk mengestimasi parameter dari uji terowongan angin atau uji getar. \(R^2\approx 1\) berarti model menjelaskan data dengan baik, tetapi derajat terlalu tinggi bisa overfitting (mengikuti derau, bukan tren).</p></details>
+<details><summary>8. Transformasi Laplace: numerik vs tabel</summary>
+<p>Transformasi Laplace dihitung numerik (Simpson) dan dibandingkan dengan tabel Laplace analitik.</p>
+<div class="fm">\[ F(s)=\mathcal{L}\{f(t)\}=\int_0^{\infty} f(t)\,e^{-st}\,dt \]
+\[ \mathcal{L}\{1\}=\frac{1}{s},\quad \mathcal{L}\{t\}=\frac{1}{s^{2}},\quad \mathcal{L}\{e^{-at}\}=\frac{1}{s+a},\quad \mathcal{L}\{te^{-at}\}=\frac{1}{(s+a)^{2}} \]
+\[ \mathcal{L}\{\sin wt\}=\frac{w}{s^{2}+w^{2}},\qquad \mathcal{L}\{\cos wt\}=\frac{s}{s^{2}+w^{2}} \]</div>
+<div class='g'><label>Fungsi f(t)<select id='a_k'><option value='0'>1 (step)</option><option value='1'>t (ramp)</option><option value='2'>e⁻ᵃᵗ</option><option value='3'>sin(wt)</option><option value='4'>cos(wt)</option><option value='5'>t·e⁻ᵃᵗ</option></select></label><label>a<input id='a_a' value='2'></label><label>w<input id='a_w' value='3'></label><label>s (harus &gt; 0)<input id='a_s' value='1.5'></label></div>
+<button class='b' onclick='run(lap)'>Transformasikan</button><div id='o8' class='pl'></div><div id='o8t'></div>
+<p class='c in'><b>Makna teknik:</b> Laplace mengubah ODE menjadi persamaan aljabar di domain s. Pasangan \(\frac{1}{s}\) (step) dan \(\frac{w}{s^2+w^2}\) (getaran) adalah dasar analisis respons transien dan kontrol pesawat.</p></details>
+
+<details><summary>9. Boundary Value Problem (BVP): Beda Hingga</summary>
+<p>Menyelesaikan \(y''=r\,y+s(x)\) dengan nilai di kedua ujung \(y(0)=A\) dan \(y(L)=B\). Turunan diganti beda hingga pusat, lalu sistem linear diselesaikan.</p>
+<div class="fm">\[ \frac{y_{i-1}-2y_i+y_{i+1}}{h^{2}}=r\,y_i+s(x_i),\qquad h=\frac{L}{N},\quad i=1,\dots,N-1 \]</div>
+<div class='g'><label>r<input id='b_r' value='0'></label><label>s(x)<input id='b_s' value='-x'></label><label>L<input id='b_L' value='1'></label><label>y(0)=A<input id='b_A' value='0'></label><label>y(L)=B<input id='b_B' value='0'></label><label>Jumlah segmen N<input id='b_N' value='8'></label><label>Solusi analitik (opsional)<input id='b_a' value='-x^3/6 + x/6'></label></div>
+<button class='b' onclick='run(bvp)'>Selesaikan</button><div id='o9' class='pl'></div><div id='o9t'></div>
+<p class='c in'><b>Makna teknik:</b> defleksi balok, distribusi suhu pada sirip, dan sebaran tegangan adalah BVP. Galat beda hingga turun \(\sim 4\times\) saat \(N\) digandakan (orde-2, \(O(h^2)\)). Solusi analitik bawaan hanya cocok untuk contoh default.</p></details>
+
+<details><summary>10. Medan Vektor 2D: Divergensi &amp; Curl</summary>
+<p>Medan \(\mathbf{F}=(P,Q)\). Panah menunjukkan arah aliran, warna latar menunjukkan divergensi (merah = sumber, biru = sink).</p>
+<div class="fm">\[ \nabla\!\cdot\!\mathbf{F}=\frac{\partial P}{\partial x}+\frac{\partial Q}{\partial y},\qquad (\nabla\times\mathbf{F})_z=\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y} \]</div>
+<div class='g'><label>P(x,y)<input id='c_P' value='x - y'></label><label>Q(x,y)<input id='c_Q' value='x + y'></label><label>Titik x0<input id='c_x' value='1'></label><label>Titik y0<input id='c_y' value='0.5'></label><label>Rentang ±<input id='c_R' value='3'></label></div>
+<button class='b' onclick='run(vf)'>Visualisasikan</button><div id='o10' class='pl'></div><div id='o10t'></div>
+<p class='c in'><b>Makna teknik:</b> divergensi \(\neq 0\) berarti fluida mengembang atau menyusut (aliran kompresibel); curl \(\neq 0\) berarti ada rotasi (vortisitas), misalnya di belakang sayap. Coba \(P=-y,\ Q=x\) untuk rotasi murni (\(\nabla\cdot\mathbf{F}=0\), curl \(=2\)). Visualisasi ini 2D.</p></details>
+
+<details><summary>11. Finite Element Method: Batang 1D (Spar Meruncing)</summary>
+<p>Batang elastis dijepit di \(x=0\), gaya tarik di ujung bebas. Dirakit matriks kekakuan \(K\), lalu \(K\mathbf{u}=\mathbf{F}\) diselesaikan. Luas penampang bisa meruncing linear.</p>
+<div class="fm">\[ k_e=\frac{E\,A_e}{L_e}\begin{bmatrix}1&-1\\-1&1\end{bmatrix},\qquad A(x)=A_0\left(1-\kappa\,\frac{x}{L}\right) \]
+dengan \(\kappa\) = taper.</div>
+<div class='g'><label>Jumlah elemen n<input id='m_n' value='4'></label><label>E (GPa)<input id='m_E' value='70'></label><label>Luas awal A0 (cm²)<input id='m_A' value='10'></label><label>Panjang L (m)<input id='m_L' value='2'></label><label>Gaya ujung (kN)<input id='m_F' value='50'></label><label>Taper (0 sampai 0.9)<input id='m_k' value='0.5'></label></div>
+<button class='b' onclick='run(fem)'>Hitung FEM</button><div id='o11' class='pl'></div><div id='o11t'></div>
+<p class='c in'><b>Makna teknik:</b> inilah inti FEM: pecah struktur jadi elemen, rakit \(K\), selesaikan \(K\mathbf{u}=\mathbf{F}\). Dengan elemen lebih banyak, hasil mendekati solusi eksak. Ini mirip spar sayap yang menyempit ke arah ujung.</p></details>
+<details><summary>12. Integral Garis (Kerja Medan Vektor)</summary>
+<p>Menghitung integral garis sepanjang kurva parametrik \((x(t),\,y(t))\) untuk \(t\) dari \(a\) ke \(b\) dengan Simpson. Pada kurva tertutup, hasilnya sama dengan integral curl di dalam area (Teorema Green).</p>
+<div class="fm">\[ \int_C \mathbf{F}\cdot d\mathbf{r}=\int_a^b \big(P\,x'(t)+Q\,y'(t)\big)\,dt \]
+\[ \oint_C \mathbf{F}\cdot d\mathbf{r}=\iint_D\left(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}\right)dA \]</div>
+<div class='g'><label>P(x,y)<input id='d_P' value='-y'></label><label>Q(x,y)<input id='d_Q' value='x'></label><label>x(t)<input id='d_x' value='cos(t)'></label><label>y(t)<input id='d_y' value='sin(t)'></label><label>t awal a<input id='d_a' value='0'></label><label>t akhir b<input id='d_b' value='2*pi'></label></div>
+<button class='b' onclick='run(line)'>Hitung</button><div id='o12' class='pl'></div><div id='o12t'></div>
+<p class='c in'><b>Makna teknik:</b> integral garis medan gaya atau kecepatan adalah kerja (work) atau sirkulasi. Sirkulasi aliran udara mengitari airfoil terkait langsung dengan gaya angkat (teorema Kutta-Joukowski). Contoh default: lingkaran satuan dengan \(\mathbf{F}=(-y,x)\) memberi \(2\pi\), sama dengan curl \(2\times\) luas \(\pi\).</p></details>
+<details><summary>13. Integral Permukaan 3D (Luas &amp; Fluks)</summary>
+<p>Permukaan parametrik \(\mathbf{r}(u,v)=(x,y,z)\). Dihitung luas dan fluks dengan aturan titik tengah \(100\times100\). Grafik 3D bisa diputar.</p>
+<div class="fm">\[ A=\iint \left|\mathbf{r}_u\times\mathbf{r}_v\right|\,du\,dv,\qquad \Phi=\iint \mathbf{F}\cdot(\mathbf{r}_u\times\mathbf{r}_v)\,du\,dv \]</div>
+<div class='g'><label>x(u,v)<input id='e_x' value='sin(u)*cos(v)'></label><label>y(u,v)<input id='e_y' value='sin(u)*sin(v)'></label><label>z(u,v)<input id='e_z' value='cos(u)'></label><label>u: dari<input id='e_u0' value='0'></label><label>u: sampai<input id='e_u1' value='pi'></label><label>v: dari<input id='e_v0' value='0'></label><label>v: sampai<input id='e_v1' value='2*pi'></label><label>Medan P(x,y,z)<input id='e_P' value='x'></label><label>Q(x,y,z)<input id='e_Q' value='y'></label><label>R(x,y,z)<input id='e_R' value='z'></label></div>
+<button class='b' onclick='run(surf)'>Hitung</button><div id='o13' class='pl' style='height:420px'></div><div id='o13t'></div>
+<p class='c in'><b>Makna teknik:</b> luas permukaan menentukan luas basah (drag gesek) dan luas panel; fluks menghitung aliran massa/panas yang menembus permukaan. Default: bola satuan dengan \(\mathbf{F}=(x,y,z)\) → luas \(4\pi\) dan fluks \(4\pi\) (Teorema Divergensi: \(\nabla\cdot\mathbf{F}=3\), volume \(\frac{4\pi}{3}\), \(3\times\frac{4\pi}{3}=4\pi\)).</p></details>
+
+<details><summary>14. FEM 2D: Rangka Batang (Plane Truss)</summary>
+<p>Satu baris per node: x y tumpuan_x tumpuan_y Fx Fy (tumpuan 1 = tertahan, 0 = bebas; gaya dalam N). Elemen: nomor node awal dan akhir (mulai dari 1). Default: rangka segitiga dengan beban 10 kN ke bawah di puncak.</p>
+<div class="fm">Kekakuan tiap batang pada sumbu global, dengan \(c=\cos\theta\), \(s=\sin\theta\), lalu dirakit menjadi \(K\mathbf{u}=\mathbf{F}\):
+\[ \mathbf{k}_e=\frac{EA}{L}\begin{bmatrix} c^2 & cs & -c^2 & -cs\\ cs & s^2 & -cs & -s^2\\ -c^2 & -cs & c^2 & cs\\ -cs & -s^2 & cs & s^2 \end{bmatrix} \]</div>
+<div class='g'><label>E (GPa)<input id='t_E' value='200'></label><label>Luas tiap batang (cm²)<input id='t_A' value='5'></label></div>
+<label>Node</label><textarea id='t_n'>0 0 1 1 0 0
+2 0 0 1 0 0
+1 1.5 0 0 0 -10000</textarea><label>Elemen</label><textarea id='t_e'>1 2
+2 3
+1 3</textarea>
+<button class='b' onclick='run(truss)'>Hitung rangka</button><div id='o14' class='pl'></div><div id='o14t'></div>
+<p class='c in'><b>Makna teknik:</b> gaya batang positif = tarik, negatif = tekan (batang tekan rawan tekuk). Struktur harus statis tertentu atau tak tentu; jika mekanisme (kurang tumpuan/batang) muncul pesan sistem singular. Deformasi digambar diperbesar agar terlihat.</p></details>
+</section>
+
+<section class="tab" id="t-pg"><div class="c"><h3>Numerical Method Playground: Root-Finding</h3>
+<p>Mencari \(x\) sehingga \(f(x)=0\) dengan empat metode pada soal yang sama. Bisection dan False Position memakai interval \([a,b]\) (harus beda tanda). Newton memakai tebakan \(a\). Secant memakai \(a\) dan \(b\) sebagai dua tebakan.</p>
+<div class="fm">\[ \begin{aligned}
+\text{Bisection:}\quad & x_n=\frac{a_n+b_n}{2}\\
+\text{False Position:}\quad & x_n=b_n-f(b_n)\,\frac{b_n-a_n}{f(b_n)-f(a_n)}\\
+\text{Newton-Raphson:}\quad & x_{n+1}=x_n-\frac{f(x_n)}{f'(x_n)}\\
+\text{Secant:}\quad & x_{n+1}=x_n-f(x_n)\,\frac{x_n-x_{n-1}}{f(x_n)-f(x_{n-1})}
+\end{aligned} \]</div>
+<div class="g"><label>f(x)<input id="r_f" value="x^3 - 2*x - 5"></label><label>a<input id="r_a" value="2"></label><label>b<input id="r_b" value="3"></label><label>Toleransi<input id="r_t" value="1e-8"></label><label>Iterasi maks<input id="r_n" value="50"></label></div>
+<button class="b" onclick="run(pg)">Bandingkan semua metode</button><button class="b x" onclick="csv()">Ekspor CSV</button>
+<div id="pgs" class="tw"></div><div id="p1" class="pl"></div><div id="p2" class="pl"></div>
+<label>Tampilkan riwayat iterasi metode:<select id="pm" onchange="run(hist)"><option value="bis">Bisection</option><option value="fp">False Position</option><option value="nr">Newton-Raphson</option><option value="se">Secant</option></select></label><div id="pgt" class="tw"></div><textarea id="csvx" placeholder="CSV muncul di sini setelah klik Ekspor CSV (salin ke Excel)."></textarea>
+<p class="c in"><b>Makna teknik:</b> Bisection pasti konvergen tetapi lambat (galat \(\div 2\) tiap langkah). Newton sangat cepat (kuadratik) tetapi bisa gagal bila turunan \(f^{\prime}(x)\approx 0\) atau tebakan jauh. Secant mendekati Newton tanpa perlu turunan. False Position kadang macet di satu sisi.</p></div></section>
+
+<section class="tab" id="t-case"><div class="c"><h3>Studi kasus aerospace: roket sounding 1D</h3>
+<p>Simulasi RK4 dengan gaya dorong, massa berkurang karena propelan habis, gravitasi, dan drag yang mengecil seiring ketinggian (atmosfer eksponensial). Dibandingkan dengan \(\Delta v\) ideal persamaan Tsiolkovsky.</p>
+<div class="fm">\[ \dot h=v,\qquad \dot v=\frac{T-\tfrac{1}{2}\rho(h)\,v|v|\,C_d A}{m}-g_0,\qquad \rho(h)=\rho_0\,e^{-h/H} \]
+\[ \dot m=\frac{T}{I_{sp}\,g_0},\qquad t_b=\frac{m_p}{\dot m},\qquad \Delta v=I_{sp}\,g_0\,\ln\frac{m_0}{m_f} \]</div>
+<div class="g"><label>Massa awal (kg)<input id="k_m" value="500"></label><label>Massa propelan (kg)<input id="k_p" value="300"></label><label>Gaya dorong (N)<input id="k_T" value="15000"></label><label>Isp (detik)<input id="k_i" value="250"></label><label>Koefisien drag Cd<input id="k_c" value="0.4"></label><label>Luas frontal (m²)<input id="k_A" value="0.05"></label></div>
+<button class="b" onclick="run(rocket)">Simulasikan peluncuran</button><div id="o15" class="pl"></div><div id="o15t"></div>
+<p class="c in"><b>Makna teknik:</b> selisih antara \(\Delta v\) ideal dan kecepatan burnout sebenarnya adalah rugi gravitasi dan rugi drag. Coba perbesar \(C_d\) atau kurangi gaya dorong: waktu bakar memanjang, rugi gravitasi membesar. Ini contoh sistem ODE dengan tiga state (ketinggian, kecepatan, massa).</p></div></section>
+<section class="tab" id="t-quiz"><div class="c"><h3>Kuis latihan</h3><p id="qs"></p><div id="qq"></div></div></section>
+<section class="tab" id="t-gl"><div class="c"><h3>Glosarium istilah asing</h3><input id="gs" placeholder="Cari istilah..." oninput="gl()"><div id="gl"></div></div></section>
+<section class="tab" id="t-res"><div class="c"><h3>Resume &amp; analisis akhir</h3><div id="rl"></div>
+<h3>Kesimpulan umum</h3><ul><li><b>Akurasi vs biaya:</b> metode orde tinggi (RK4, Simpson) memberi galat kecil dengan langkah lebih besar, tetapi biaya per langkah lebih mahal.</li><li><b>Keandalan vs kecepatan:</b> metode akar yang pasti konvergen (Bisection) lambat; yang cepat (Newton) butuh tebakan awal baik.</li><li><b>Stabilitas:</b> step size harus dipilih sesuai dinamika sistem, bukan hanya demi akurasi.</li><li><b>Domain frekuensi:</b> sampling harus memenuhi \(f_s\ge 2f_{\max}\) (Nyquist) agar tidak terjadi aliasing.</li><li><b>Pola pikir:</b> hasil numerik adalah pendekatan; selalu cek galat, bandingkan dengan solusi referensi, dan tanyakan apa artinya secara fisik.</li></ul></div></section>
+
+<section class="tab" id="t-about"><div class="c"><h3>Tentang dashboard</h3>
+<p><b>Advanced Engineering Mathematics &amp; Computational Methods Lab</b> adalah laboratorium belajar interaktif untuk mahasiswa teknik (terutama aerospace). Tujuannya bukan sekadar menampilkan rumus, tetapi membiarkan Anda mengubah parameter, menjalankan metode numerik, melihat grafiknya, lalu memahami artinya secara teknik.</p>
+<h3>Isi dan cara kerja</h3><ul><li><b>Dashboard:</b> statistik, roadmap 9 tahap, catatan, bookmark, ekspor/impor progres.</li><li><b>Lab Interaktif:</b> 14 simulasi (ODE orde-1, getaran, integrasi/turunan, Gauss, optimisasi, Fourier, least-squares, Laplace, BVP, medan vektor 2D, FEM batang 1D, integral garis, integral permukaan 3D, rangka batang 2D) serta studi kasus roket di tab Studi Kasus.</li><li><b>Playground:</b> perbandingan 4 metode akar, tabel iterasi, waktu eksekusi, grafik konvergensi, CSV.</li><li><b>Kuis, Glosarium, Resume:</b> fasilitas belajar tambahan. Resume memuat ringkasan hasil percobaan Anda yang terakhir.</li></ul>
+<h3>Prinsip</h3><p>Semua hasil dihitung oleh fungsi JavaScript sungguhan (Euler, Heun, RK4, Gauss, DFT, dll). Tidak ada hasil acak atau palsu. Progres tersimpan di localStorage browser Anda saja.</p>
+<h3>Teknologi</h3><p>HTML, CSS, JavaScript murni; Plotly.js untuk grafik; MathJax untuk rumus. Pustaka dimuat via CDN sehingga perlu internet.</p>
+<h3>Keterbatasan versi ini</h3><p class="w">Belum tersedia: Three.js (grafik 3D memakai Plotly), FEM kontinum 2D/3D, studi kasus aerospace tambahan, dan unduhan file langsung (ekspor lewat kotak teks). Medan vektor masih 2D. Evaluator fungsi memakai JavaScript, jadi hanya masukkan ekspresi yang Anda tulis sendiri.</p>
+<h3>Informasi update</h3>
+<p><b>v1.0 (20 Okt 2026)</b> – rilis awal: dashboard, 6 lab, playground, kuis, glosarium, resume, ekspor/impor progres.</p>
+<p><b>v1.1 (20 Okt 2026)</b> – warna lebih hidup dan kontras tinggi, lab ke-7 regresi least-squares, glosarium bertambah.</p><p><b>v1.2 (20 Okt 2026)</b> – lab Laplace, BVP, medan vektor 2D (divergensi/curl), FEM batang 1D; kuis jadi 8 soal; glosarium bertambah.</p>
+<p><b>v1.3 (20 Okt 2026)</b> – perbaikan warna: header dan menu lebih terang, teks menu selalu terbaca (juga di mode terang); bilangan kondisi matriks pada lab Gauss; lab ke-12 integral garis.</p><p><b>v1.4 (20 Okt 2026)</b> – lab integral permukaan (grafik 3D), rangka batang 2D (FEM), tab Studi Kasus roket sounding; glosarium bertambah.</p><p><b>v1.5 (20 Okt 2026)</b> – semua rumus kini ditampilkan dengan MathJax (gaya buku teks): rumus Euler, Heun, RK4, trapesium/Simpson, DFT, Laplace, Newton, FEM, dan lain-lain ditambahkan di tiap lab; kuis, glosarium, dan tabel hasil juga memakai tampilan rumus.</p><p><b>Rencana v1.6</b> – FEM kontinum 2D, studi kasus tambahan (sayap, orbit), Three.js, unduhan file langsung.</p>
+</div></section>
+</main><div id="toast"></div>
+<script>
+/* ===== Utilitas ===== */
+const $=i=>document.getElementById(i),cs=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+let S;try{S=JSON.parse(localStorage.getItem('lab1'))}catch(e){}
+S=S||{st:{},notes:'',ok:{},vis:[],bm:[],last:{}};
+const save=()=>{try{localStorage.setItem('lab1',JSON.stringify(S))}catch(e){}};
+const toast=(t,bad)=>{const e=$('toast');e.textContent=t;e.style.background=bad?'#c2410c':'#0e7490';e.style.display='block';clearTimeout(toast.t);toast.t=setTimeout(()=>e.style.display='none',4500)};
+let _tx=Promise.resolve();const tx=()=>{if(window.MathJax&&MathJax.typesetPromise)_tx=_tx.then(()=>MathJax.typesetPromise()).catch(()=>{})};
+const run=f=>{try{f();tx()}catch(e){toast('Gagal: '+e.message,1)}};
+const V=i=>{const v=parseFloat($(i).value);if(!isFinite(v))throw Error('Angka tidak valid pada kolom '+i);return v};
+function mk(e,a){const s=e.replace(/\^/g,'**').replace(/\b(asin|acos|atan|sinh|cosh|tanh|sin|cos|tan|exp|log|sqrt|abs)\b/g,'Math.$1').replace(/\bpi\b/gi,'Math.PI');
+ const al=a.split(',');const f=new Function(...al,'return '+s);const t=f(...al.map(()=>0.7));if(typeof t!='number'||isNaN(t))throw Error('Ekspresi "'+e+'" tidak menghasilkan angka');return f}
+const fm=v=>typeof v!='number'?v:(v!=0&&(Math.abs(v)<1e-4||Math.abs(v)>1e6))?v.toExponential(4):+v.toPrecision(8);
+const tbl=(h,r)=>'<table><tr>'+h.map(x=>'<th>'+x+'</th>').join('')+'</tr>'+r.map(x=>'<tr>'+x.map(c=>'<td>'+fm(c)+'</td>').join('')+'</tr>').join('')+'</table>';
+function P(id,d,t,xt,yt,ex){const el=$(id);if(!window.Plotly){el.innerHTML='<p class="w">Plotly gagal dimuat (perlu internet). Tabel angka tetap berfungsi.</p>';return}
+ Plotly.newPlot(el,d,Object.assign({title:{text:t,font:{size:14}},paper_bgcolor:'rgba(0,0,0,0)',plot_bgcolor:'rgba(0,0,0,0)',font:{color:cs('--tx')},margin:{t:40,l:55,r:15,b:45},xaxis:{title:xt,gridcolor:cs('--gr')},yaxis:{title:yt,gridcolor:cs('--gr')},legend:{orientation:'h',y:-0.25}},ex||{}),{responsive:true,displaylogo:false})}
+const COL=['#00e5ff','#ff7a00','#2dff9a','#ff2d95'],lin2=(n,a,b)=>Array.from({length:n},(_,i)=>a+(b-a)*i/(n-1));
+const done=(k,s)=>{S.last[k]=s;save()};
+/* ===== ODE ===== */
+function stepODE(F,Y,T,h,m){const n=Math.round(T/h);if(n>20000||n<1)throw Error('Jumlah langkah harus 1 sampai 20000 (periksa T dan h)');const t=[0],o=[Y.slice()];let y=Y.slice();const ad=(a,b,s)=>a.map((v,i)=>v+s*b[i]);
+ for(let i=0;i<n;i++){const ti=i*h,k1=F(ti,y);
+  if(m=='eu')y=ad(y,k1,h);
+  else if(m=='he'){const k2=F(ti+h,ad(y,k1,h));y=y.map((v,j)=>v+h/2*(k1[j]+k2[j]))}
+  else{const k2=F(ti+h/2,ad(y,k1,h/2)),k3=F(ti+h/2,ad(y,k2,h/2)),k4=F(ti+h,ad(y,k3,h));y=y.map((v,j)=>v+h/6*(k1[j]+2*k2[j]+2*k3[j]+k4[j]))}
+  t.push((i+1)*h);o.push(y)}return{t,y:o}}
+const MN={eu:'Euler',he:'Heun',rk:'Runge-Kutta 4'};
+function odeShow(F,Y0,T,h,an,pid,tid,name,key){const d=[],rows=[];
+ if(an){const tt=lin2(300,0,T);d.push({x:tt,y:tt.map(an),name:'Analitik',line:{color:'#fff',dash:'dot',width:3}})}
+ ['eu','he','rk'].forEach((m,i)=>{const r=stepODE(F,Y0,T,h,m);d.push({x:r.t,y:r.y.map(v=>v[0]),name:MN[m],mode:'lines+markers',marker:{size:4},line:{color:COL[i]}});
+  const yT=r.y[r.y.length-1][0];let me=null;if(an)me=Math.max(...r.t.map((t,j)=>Math.abs(r.y[j][0]-an(t))));rows.push([MN[m],yT,an?Math.abs(yT-an(T)):'-',me??'-'])});
+ P(pid,d,name,'t','y');$(tid).innerHTML=tbl(['Metode','\\(y(T)\\)','Galat di T','Galat maks'],rows);
+ done(key,name+': h='+h+'. '+rows.map(r=>r[0]+' galat maks='+fm(r[3])).join('; '))}
+function ode1(){const g=mk($('o_f').value,'t,y'),a=$('o_a').value.trim(),an=a?mk(a,'t'):null;
+ odeShow((t,y)=>[g(t,y[0])],[V('o_y')],V('o_T'),V('o_h'),an,'o1','o1t','dy/dt = '+$('o_f').value,'ode1')}
+function osc(){const m=V('v_m'),c=V('v_c'),k=V('v_k'),x0=V('v_x'),v0=V('v_v');if(m<=0||k<=0)throw Error('m dan k harus positif');
+ const wn=Math.sqrt(k/m),z=c/(2*Math.sqrt(k*m)),wd=wn*Math.sqrt(Math.max(0,1-z*z));let an=null;
+ if(z<1)an=t=>Math.exp(-z*wn*t)*(x0*Math.cos(wd*t)+(v0+z*wn*x0)/wd*Math.sin(wd*t));
+ odeShow((t,Y)=>[Y[1],-(c*Y[1]+k*Y[0])/m],[x0,v0],V('v_T'),V('v_h'),an,'o2','o2t','Perpindahan x(t)','osc');
+ $('o2t').insertAdjacentHTML('beforebegin','<p class="c in">\\(\\omega_n\\) = '+fm(wn)+' rad/s ('+fm(wn/2/Math.PI)+' Hz), \\(\\zeta\\) = '+fm(z)+' → '+(z<1?'underdamped (bergetar dan meluruh)':z==1?'critically damped':'overdamped (tanpa getaran); referensi analitik tidak ditampilkan')+'</p>')}
+/* ===== Integrasi ===== */
+function integ1(){const f=mk($('i_f').value,'x'),a=V('i_a'),b=V('i_b'),n=V('i_n');if(n<2||n%2||n>100000)throw Error('n harus genap dan ≥ 2');
+ const Fs=$('i_F').value.trim(),ex=Fs?(mk(Fs,'x')(b)-mk(Fs,'x')(a)):null;
+ const T=n=>{const h=(b-a)/n;let s=(f(a)+f(b))/2;for(let i=1;i<n;i++)s+=f(a+i*h);return s*h};
+ const Sm=n=>{const h=(b-a)/n;let s=f(a)+f(b);for(let i=1;i<n;i++)s+=f(a+i*h)*(i%2?4:2);return s*h/3};
+ const rows=[[ 'Trapesium (n='+n+')',T(n)],['Simpson 1/3 (n='+n+')',Sm(n)]].map(r=>ex!=null?[...r,ex,Math.abs(r[1]-ex),ex?Math.abs(r[1]-ex)/Math.abs(ex)*100:'-']:[...r,'-','-','-']);
+ const xs=lin2(200,a,b);P('o3',[{x:xs,y:xs.map(f),fill:'tozeroy',name:'f(x)',line:{color:COL[0]},fillcolor:'rgba(255,138,31,.35)'}],'Fungsi dan area integrasi','x','f(x)');
+ const x0=V('i_x'),h=V('i_h'),ref=(f(x0+1e-5)-f(x0-1e-5))/2e-5;
+ const dr=[['Forward',(f(x0+h)-f(x0))/h],['Backward',(f(x0)-f(x0-h))/h],['Central',(f(x0+h)-f(x0-h))/(2*h)]].map(r=>[...r,Math.abs(r[1]-ref)]);
+ const cv=[4,8,16,32,64].map(m=>[m,T(m),Sm(m),ex!=null?Math.abs(T(m)-ex):'-',ex!=null?Math.abs(Sm(m)-ex):'-']);
+ $('o3t').innerHTML=tbl(['Metode','Hasil numerik','Eksak','Galat absolut','Galat relatif %'],rows)+'<p>Konvergensi terhadap n:</p>'+tbl(['n','Trapesium','Simpson','Galat Trap.','Galat Simp.'],cv)+'<p>Turunan di x0 (referensi = beda pusat h=1e-5):</p>'+tbl(['Skema','Nilai','Galat vs referensi'],dr)+'<p class="w">Selisih terhadap nilai eksak muncul karena kurva dihampiri polinomial per segmen (galat pemotongan).</p>';
+ done('int','Integral '+$('i_f').value+': trapesium='+fm(rows[0][1])+', Simpson='+fm(rows[1][1])+(ex!=null?', eksak='+fm(ex):''))}
+/* ===== Gauss ===== */
+function lin(){const M=$('l_m').value.trim().split('\n').map(r=>r.trim().split(/\s+/).map(Number));const n=M.length;
+ if(n<1||M.some(r=>r.length!=n+1||r.some(isNaN)))throw Error('Matriks harus n baris × (n+1) kolom berisi angka');
+ const sh=A=>A.map(r=>r.map(v=>fm(+v.toFixed(6)).toString().padStart(10)).join('')).join('\n'),L=['Matriks awal:\n'+sh(M)];let det=1,A=M.map(r=>r.slice()),sing=false;
+ for(let c=0;c<n&&!sing;c++){let p=c;for(let r=c+1;r<n;r++)if(Math.abs(A[r][c])>Math.abs(A[p][c]))p=r;
+  if(Math.abs(A[p][c])<1e-12){L.push('Kolom '+(c+1)+': pivot ≈ 0, matriks singular (tidak ada solusi tunggal).');det=0;sing=true;break}
+  if(p!=c){[A[p],A[c]]=[A[c],A[p]];det=-det;L.push('Tukar baris '+(c+1)+' dengan '+(p+1)+' (partial pivoting)')}
+  det*=A[c][c];for(let r=c+1;r<n;r++){const f=A[r][c]/A[c][c];for(let k=c;k<=n;k++)A[r][k]-=f*A[c][k];L.push('R'+(r+1)+' ← R'+(r+1)+' − ('+fm(f)+')·R'+(c+1))}L.push(sh(A))}
+ if(!sing){const x=Array(n).fill(0);for(let i=n-1;i>=0;i--){let s=A[i][n];for(let j=i+1;j<n;j++)s-=A[i][j]*x[j];x[i]=s/A[i][i]}
+  const res=Math.max(...M.map(r=>Math.abs(r.slice(0,n).reduce((s,v,j)=>s+v*x[j],0)-r[n])));
+  L.push('Substitusi balik →  x = ['+x.map(fm).join(', ')+']','Determinan A = '+fm(det),'Residual maks |Ax−b| = '+fm(res));
+  let cn='-';try{const Ar=M.map(r=>r.slice(0,n)),ic=Array.from({length:n},(_,j)=>gs(Ar.map((r,i)=>[...r,i==j?1:0])));cn=Math.max(...Ar[0].map((_,j)=>Ar.reduce((s,r)=>s+Math.abs(r[j]),0)))*Math.max(...ic.map(c=>c.reduce((s,v)=>s+Math.abs(v),0)))}catch(e){}
+  L.push('Bilangan kondisi κ₁(A) = '+fm(cn)+(cn>1e6?'  → ILL-CONDITIONED: hasil sangat sensitif terhadap galat data/pembulatan':'  (makin besar, makin sensitif; ≈1 berarti sangat baik)'));done('lin','Gauss '+n+'×'+n+': x=['+x.map(fm).join(', ')+'], det='+fm(det))}
+ else done('lin','Gauss: matriks singular');$('o4').textContent=L.join('\n')}
+/* ===== Optimisasi ===== */
+function opt(){const f=mk($('p_f').value,'x,y'),lr=V('p_l'),N=V('p_n');let x=V('p_x'),y=V('p_y');const px=[x],py=[y],h=1e-5;let div=false;
+ for(let i=0;i<N;i++){const gx=(f(x+h,y)-f(x-h,y))/(2*h),gy=(f(x,y+h)-f(x,y-h))/(2*h);x-=lr*gx;y-=lr*gy;if(!isFinite(x)||!isFinite(y)||Math.abs(x)>1e6){div=true;break}px.push(x);py.push(y)}
+ const lim=Math.max(3,...px.map(Math.abs),...py.map(Math.abs));const r=Math.min(lim*1.1,50),gx=lin2(50,-r,r),Z=gx.map(yy=>gx.map(xx=>f(xx,yy)));
+ P('o5',[{type:'contour',x:gx,y:gx,z:Z,colorscale:'Portland',ncontours:25,showscale:false},{x:px,y:py,mode:'lines+markers',name:'Lintasan',line:{color:'#fff'},marker:{size:5,color:'#ff8a1f'}}],'Lintasan gradient descent','x','y');
+ const last=px.length-1;$('o5t').innerHTML=div?'<p class="w">Algoritma DIVERGEN: learning rate terlalu besar. Kecilkan nilainya.</p>':'<p class="ok">Titik akhir: x='+fm(px[last])+', y='+fm(py[last])+', f='+fm(f(px[last],py[last]))+' setelah '+last+' iterasi.</p>';
+ done('opt',div?'Gradient descent diverge (lr='+lr+')':'Gradient descent: titik akhir ('+fm(px[last])+', '+fm(py[last])+'), f='+fm(f(px[last],py[last])))}
+/* ===== Least squares ===== */
+function reg(){const D=$('q_d').value.trim().split('\n').map(r=>r.trim().split(/[\s,]+/).map(Number));if(D.length<2||D.some(r=>r.length!=2||r.some(isNaN)))throw Error('Data harus 2 kolom angka (x y) per baris');const n=V('q_n');if(n<1||n>6||n>=D.length)throw Error('Derajat harus 1 sampai 6 dan lebih kecil dari jumlah data');const m=n+1;
+ const A=Array.from({length:m},(_,i)=>Array.from({length:m+1},(_,j)=>j<m?D.reduce((s,[x])=>s+x**(i+j),0):D.reduce((s,[x,y])=>s+y*x**i,0)));
+ for(let c=0;c<m;c++){let p=c;for(let r=c+1;r<m;r++)if(Math.abs(A[r][c])>Math.abs(A[p][c]))p=r;if(Math.abs(A[p][c])<1e-12)throw Error('Sistem normal singular (data kurang bervariasi)');[A[p],A[c]]=[A[c],A[p]];for(let r=c+1;r<m;r++){const f=A[r][c]/A[c][c];for(let k=c;k<=m;k++)A[r][k]-=f*A[c][k]}}
+ const co=Array(m).fill(0);for(let i=m-1;i>=0;i--){let s=A[i][m];for(let j=i+1;j<m;j++)s-=A[i][j]*co[j];co[i]=s/A[i][i]}
+ const p=x=>co.reduce((s,v,i)=>s+v*x**i,0),yb=D.reduce((s,r)=>s+r[1],0)/D.length,sst=D.reduce((s,r)=>s+(r[1]-yb)**2,0),sse=D.reduce((s,r)=>s+(r[1]-p(r[0]))**2,0),R2=sst?1-sse/sst:1;
+ const xs=D.map(r=>r[0]),xs2=lin2(200,Math.min(...xs),Math.max(...xs));
+ P('o7',[{x:xs,y:D.map(r=>r[1]),mode:'markers',name:'Data',marker:{size:9,color:'#ff7a00'}},{x:xs2,y:xs2.map(p),name:'Fit derajat '+n,line:{color:'#00e5ff',width:3}}],'Data dan kurva least-squares','x','y');
+ $('o7t').innerHTML=tbl(['Koefisien','Nilai'],co.map((v,i)=>['\\(a_{'+i+'}\\) (\\(x^{'+i+'}\\))',v]))+'<p class="ok">\\(R^2\\) = '+fm(R2)+' · RMSE = '+fm(Math.sqrt(sse/D.length))+'</p>';
+ done('reg','Least-squares derajat '+n+': R²='+fm(R2)+', koefisien=['+co.map(fm).join(', ')+']')}
+/* ===== Solver umum ===== */
+function gs(M){const n=M.length;for(let c=0;c<n;c++){let p=c;for(let r=c+1;r<n;r++)if(Math.abs(M[r][c])>Math.abs(M[p][c]))p=r;if(!M[p][c])throw Error('Sistem singular');[M[p],M[c]]=[M[c],M[p]];for(let r=c+1;r<n;r++){const f=M[r][c]/M[c][c];if(f)for(let k=c;k<=n;k++)M[r][k]-=f*M[c][k]}}
+ const x=Array(n).fill(0);for(let i=n-1;i>=0;i--){let s=M[i][n];for(let j=i+1;j<n;j++)s-=M[i][j]*x[j];x[i]=s/M[i][i]}return x}
+/* ===== Laplace ===== */
+function lap(){const a=V('a_a'),w=V('a_w'),s0=V('a_s'),k=+$('a_k').value;if(s0<=0||((k==2||k==5)&&s0<=-a))throw Error('s harus > 0 (dan > −a untuk eksponensial)');
+ const fs=[t=>1,t=>t,t=>Math.exp(-a*t),t=>Math.sin(w*t),t=>Math.cos(w*t),t=>t*Math.exp(-a*t)],an=[s=>1/s,s=>1/s**2,s=>1/(s+a),s=>w/(s*s+w*w),s=>s/(s*s+w*w),s=>1/(s+a)**2],f=fs[k];
+ const num=s=>{const T=40/s,n=20000,h=T/n;let q=0;for(let i=0;i<=n;i++){const t=i*h;q+=f(t)*Math.exp(-s*t)*(i==0||i==n?1:i%2?4:2)}return q*h/3};
+ const ss=lin2(40,s0,s0+5),sm=lin2(8,s0,s0+5);P('o8',[{x:ss,y:ss.map(an[k]),name:'Tabel analitik',line:{color:'#00e5ff',width:3}},{x:sm,y:sm.map(num),mode:'markers',name:'Integral numerik',marker:{size:10,color:'#ff2d95'}}],'F(s): analitik vs numerik','s','F(s)');
+ const nv=num(s0),av=an[k](s0);$('o8t').innerHTML=tbl(['\\(s\\)','\\(F(s)\\) numerik','\\(F(s)\\) analitik','Galat'],[[s0,nv,av,Math.abs(nv-av)]]);done('lap','Laplace (jenis '+(k+1)+') di s='+s0+': numerik='+fm(nv)+', analitik='+fm(av))}
+/* ===== BVP ===== */
+function bvp(){const r=V('b_r'),L=V('b_L'),A=V('b_A'),B=V('b_B'),N=V('b_N'),sf=mk($('b_s').value,'x'),as=$('b_a').value.trim(),an=as?mk(as,'x'):null;if(N<2||N>400||N%1)throw Error('N bilangan bulat 2 sampai 400');
+ const sol=N=>{const h=L/N,x=Array.from({length:N+1},(_,i)=>i*h),M=Array.from({length:N-1},(_,i)=>{const q=Array(N).fill(0);if(i>0)q[i-1]=1;q[i]=-(2+h*h*r);if(i<N-2)q[i+1]=1;q[N-1]=h*h*sf(x[i+1])-(i==0?A:0)-(i==N-2?B:0);return q});return{x,y:[A,...gs(M),B]}};
+ const R=sol(N),d=[{x:R.x,y:R.y,mode:'lines+markers',name:'Beda hingga N='+N,line:{color:'#ff7a00'}}];let h='';
+ if(an){const xx=lin2(200,0,L);d.unshift({x:xx,y:xx.map(an),name:'Analitik',line:{color:'#00e5ff',width:3,dash:'dot'}});
+  const er=m=>{const q=sol(m);return Math.max(...q.x.map((x,i)=>Math.abs(q.y[i]-an(x))))};h=tbl(['N','Galat maks'],[4,8,16,32,64].map(m=>[m,er(m)]))+'<p class="ok">Galat maks pada N='+N+': '+fm(er(N))+'</p>'}
+ P('o9',d,'Solusi BVP','x','y');$('o9t').innerHTML=h||'<p>Isi solusi analitik untuk melihat galat.</p>';done('bvp','BVP beda hingga N='+N+(an?', galat maks='+fm(Math.max(...R.x.map((x,i)=>Math.abs(R.y[i]-an(x))))):''))}
+/* ===== Medan vektor ===== */
+function vf(){const P_=mk($('c_P').value,'x,y'),Q=mk($('c_Q').value,'x,y'),x0=V('c_x'),y0=V('c_y'),R=V('c_R'),h=1e-5;if(R<=0)throw Error('Rentang harus positif');
+ const dv=(x,y)=>(P_(x+h,y)-P_(x-h,y))/(2*h)+(Q(x,y+h)-Q(x,y-h))/(2*h),cl=(x,y)=>(Q(x+h,y)-Q(x-h,y))/(2*h)-(P_(x,y+h)-P_(x,y-h))/(2*h);
+ const g=lin2(41,-R,R),Z=g.map(y=>g.map(x=>dv(x,y))),gv=lin2(15,-R,R),len=R/8,xs=[],ys=[];
+ gv.forEach(y=>gv.forEach(x=>{const p=P_(x,y),q=Q(x,y),m=Math.hypot(p,q)||1;xs.push(x,x+len*p/m,null);ys.push(y,y+len*q/m,null)}));
+ P('o10',[{type:'heatmap',x:g,y:g,z:Z,colorscale:'RdBu',reversescale:true,zmid:0,colorbar:{title:'div'}},{x:xs,y:ys,mode:'lines',name:'Arah medan',line:{color:'#fff',width:1.5}},{x:[x0],y:[y0],mode:'markers',name:'Titik uji',marker:{size:12,color:'#ff7a00'}}],'Medan vektor F=(P,Q)','x','y',{yaxis:{scaleanchor:'x',gridcolor:cs('--gr')}});
+ const d=dv(x0,y0),c=cl(x0,y0);$('o10t').innerHTML=tbl(['Besaran','Nilai di titik uji'],[['Divergensi \\(\\nabla\\!\\cdot\\!\\mathbf{F}\\)',d],['Curl \\((\\nabla\\times\\mathbf{F})_z\\)',c],['\\(|\\mathbf{F}|\\)',Math.hypot(P_(x0,y0),Q(x0,y0))]])+'<p class="ok">'+(Math.abs(d)<1e-6?'Divergensi ≈ 0: aliran inkompresibel di titik ini. ':d>0?'Divergensi positif: titik berperan sebagai sumber. ':'Divergensi negatif: titik berperan sebagai sink. ')+(Math.abs(c)<1e-6?'Curl ≈ 0: tanpa rotasi lokal.':'Curl ≠ 0: ada rotasi lokal.')+'</p>';done('vf','Medan vektor di ('+x0+','+y0+'): div='+fm(d)+', curl='+fm(c))}
+/* ===== FEM batang 1D ===== */
+function fem(){const n=V('m_n'),E=V('m_E')*1e9,A0=V('m_A')/1e4,L=V('m_L'),F=V('m_F')*1e3,k=V('m_k');if(n<1||n>200||n%1)throw Error('Jumlah elemen bilangan bulat 1 sampai 200');if(k<0||k>0.9||E<=0||A0<=0||L<=0)throw Error('Cek nilai: taper 0 sampai 0.9; E, A, L positif');
+ const le=L/n,K=Array.from({length:n+1},()=>Array(n+1).fill(0)),Ae=[];for(let e=0;e<n;e++){const a=A0*(1-k*(e+.5)*le/L),c=E*a/le;Ae.push(a);K[e][e]+=c;K[e+1][e+1]+=c;K[e][e+1]-=c;K[e+1][e]-=c}
+ const M=Array.from({length:n},(_,i)=>{const q=K[i+1].slice(1);q.push(i==n-1?F:0);return q}),u=[0,...gs(M)],x=u.map((_,i)=>i*le);
+ const ua=x=>k?-(F*L/(E*A0*k))*Math.log(1-k*x/L):F*x/(E*A0),xx=lin2(100,0,L);
+ P('o11',[{x:xx,y:xx.map(v=>ua(v)*1e3),name:'Eksak',line:{color:'#00e5ff',width:3,dash:'dot'}},{x:x,y:u.map(v=>v*1e3),mode:'lines+markers',name:'FEM ('+n+' elemen)',line:{color:'#ff2d95'}}],'Perpindahan sepanjang batang','x (m)','u (mm)');
+ const sg=Ae.map(a=>F/a/1e6),tip=u[n],ta=ua(L);$('o11t').innerHTML=tbl(['Besaran','FEM','Eksak','Galat %'],[['Perpindahan ujung (mm)',tip*1e3,ta*1e3,Math.abs(tip-ta)/ta*100],['Tegangan maks (MPa)',Math.max(...sg),F/(A0*(1-k))/1e6,'-']])+'<p>Perpindahan nodal (mm):</p>'+tbl(['Node','x (m)','u (mm)'],u.map((v,i)=>[i,x[i],v*1e3]).slice(0,30));
+ done('fem','FEM batang '+n+' elemen: u ujung='+fm(tip*1e3)+' mm (eksak '+fm(ta*1e3)+' mm)')}
+/* ===== Integral garis ===== */
+function line(){const P_=mk($('d_P').value,'x,y'),Q=mk($('d_Q').value,'x,y'),X=mk($('d_x').value,'t'),Y=mk($('d_y').value,'t'),a=V('d_a'),b=V('d_b'),n=2000,h=(b-a)/n,e=1e-6;if(b==a)throw Error('a dan b tidak boleh sama');
+ const g=t=>P_(X(t),Y(t))*(X(t+e)-X(t-e))/(2*e)+Q(X(t),Y(t))*(Y(t+e)-Y(t-e))/(2*e);let s=g(a)+g(b);for(let i=1;i<n;i++)s+=g(a+i*h)*(i%2?4:2);const I=s*h/3,tt=lin2(300,a,b),cl=Math.hypot(X(a)-X(b),Y(a)-Y(b))<1e-9;
+ P('o12',[{x:tt.map(X),y:tt.map(Y),name:'Kurva C',line:{color:'#4ff0ff',width:3}},{x:[X(a)],y:[Y(a)],mode:'markers',name:'Awal',marker:{size:12,color:'#4dffa8'}},{x:[X(b)],y:[Y(b)],mode:'markers',name:'Akhir',marker:{size:9,color:'#ff5cb0'}}],'Kurva integrasi','x','y',{yaxis:{scaleanchor:'x',gridcolor:cs('--gr')}});
+ $('o12t').innerHTML=tbl(['Besaran','Nilai'],[['\\(\\int_C \\mathbf{F}\\cdot d\\mathbf{r}\\)',I],['Kurva tertutup?',cl?'ya':'tidak']])+(cl?'<p class="ok">Kurva tertutup: nilai ini sama dengan \\(\\iint (\\nabla\\times\\mathbf{F})_z\\,dA\\) di dalam area (Teorema Green).</p>':'');done('line','Integral garis ∫F·dr = '+fm(I)+(cl?' (kurva tertutup)':''))}
+/* ===== Integral permukaan ===== */
+function surf(){const X=mk($('e_x').value,'u,v'),Y=mk($('e_y').value,'u,v'),Z=mk($('e_z').value,'u,v'),Pf=mk($('e_P').value,'x,y,z'),Qf=mk($('e_Q').value,'x,y,z'),Rf=mk($('e_R').value,'x,y,z'),u0=V('e_u0'),u1=V('e_u1'),v0=V('e_v0'),v1=V('e_v1'),N=100,du=(u1-u0)/N,dv=(v1-v0)/N,e=1e-6;
+ let ar=0,fl=0;for(let i=0;i<N;i++)for(let j=0;j<N;j++){const u=u0+(i+.5)*du,v=v0+(j+.5)*dv,ru=[X(u+e,v)-X(u-e,v),Y(u+e,v)-Y(u-e,v),Z(u+e,v)-Z(u-e,v)].map(q=>q/(2*e)),rv=[X(u,v+e)-X(u,v-e),Y(u,v+e)-Y(u,v-e),Z(u,v+e)-Z(u,v-e)].map(q=>q/(2*e)),nn=[ru[1]*rv[2]-ru[2]*rv[1],ru[2]*rv[0]-ru[0]*rv[2],ru[0]*rv[1]-ru[1]*rv[0]],x=X(u,v),y=Y(u,v),z=Z(u,v);ar+=Math.hypot(...nn)*du*dv;fl+=(Pf(x,y,z)*nn[0]+Qf(x,y,z)*nn[1]+Rf(x,y,z)*nn[2])*du*dv}
+ const g=40,us=lin2(g,u0,u1),vs=lin2(g,v0,v1),G=f=>vs.map(v=>us.map(u=>f(u,v)));
+ P('o13',[{type:'surface',x:G(X),y:G(Y),z:G(Z),colorscale:'Portland',showscale:false}],'Permukaan parametrik','x','y',{scene:{aspectmode:'data'},margin:{t:40,l:0,r:0,b:0}});
+ $('o13t').innerHTML=tbl(['Besaran','Nilai'],[['Luas permukaan',ar],['Fluks \\(\\iint \\mathbf{F}\\cdot\\mathbf{n}\\,dS\\)',fl]])+'<p class="ok">Tanda fluks mengikuti arah normal \\(\\mathbf{r}_u\\times\\mathbf{r}_v\\) (balik urutan \\(u\\) dan \\(v\\) untuk membalik arah).</p>';done('surf','Integral permukaan: luas='+fm(ar)+', fluks='+fm(fl))}
+/* ===== Rangka batang 2D ===== */
+function truss(){const E=V('t_E')*1e9,A=V('t_A')/1e4,rd=id=>$(id).value.trim().split('\n').map(r=>r.trim().split(/\s+/).map(Number)),ND=rd('t_n'),EL=rd('t_e'),n=ND.length;
+ if(ND.some(r=>r.length!=6||r.some(isNaN)))throw Error('Tiap baris node harus 6 angka: x y tumpuan_x tumpuan_y Fx Fy');if(EL.some(r=>r.length!=2||r.some(q=>!(q>=1&&q<=n&&q%1==0))))throw Error('Elemen: dua nomor node valid (1 sampai '+n+')');
+ const K=Array.from({length:2*n},()=>Array(2*n).fill(0)),inf=[];
+ EL.forEach(([a,b])=>{a--;b--;const dx=ND[b][0]-ND[a][0],dy=ND[b][1]-ND[a][1],L=Math.hypot(dx,dy);if(!L)throw Error('Dua node elemen berimpit');const c=dx/L,s=dy/L,k=E*A/L,m=[[c*c,c*s],[c*s,s*s]],d=[2*a,2*a+1,2*b,2*b+1];for(let i=0;i<4;i++)for(let j=0;j<4;j++)K[d[i]][d[j]]+=((i<2)==(j<2)?1:-1)*k*m[i%2][j%2];inf.push({a,b,L,c,s,k})});
+ const F=ND.flatMap(r=>[r[4],r[5]]),fr=[];ND.forEach((r,i)=>{if(!r[2])fr.push(2*i);if(!r[3])fr.push(2*i+1)});if(!fr.length)throw Error('Semua derajat kebebasan tertahan');
+ const sol=gs(fr.map(i=>[...fr.map(j=>K[i][j]),F[i]])),u=Array(2*n).fill(0);fr.forEach((d,i)=>u[d]=sol[i]);
+ const mf=inf.map(q=>q.k*(q.c*(u[2*q.b]-u[2*q.a])+q.s*(u[2*q.b+1]-u[2*q.a+1]))),mx=Math.max(...u.map(Math.abs))||1,dim=Math.max(...ND.map(r=>Math.max(Math.abs(r[0]),Math.abs(r[1]))))||1,sc=0.15*dim/mx;
+ const ln=f=>{const x=[],y=[];inf.forEach(q=>{x.push(f(q.a,0),f(q.b,0),null);y.push(f(q.a,1),f(q.b,1),null)});return{x,y}},o=ln((i,k)=>ND[i][k]),dd=ln((i,k)=>ND[i][k]+sc*u[2*i+k]);
+ P('o14',[{...o,mode:'lines',name:'Awal',line:{color:'#d3dcff',width:3}},{...dd,mode:'lines+markers',name:'Terdeformasi (×'+fm(sc)+')',line:{color:'#ff5cb0',width:3}}],'Rangka batang','x (m)','y (m)',{yaxis:{scaleanchor:'x',gridcolor:cs('--gr')}});
+ const R=[];ND.forEach((r,i)=>{for(let k=0;k<2;k++)if(r[2+k]){let s=-F[2*i+k];for(let j=0;j<2*n;j++)s+=K[2*i+k][j]*u[j];R.push(['Node '+(i+1)+(k?' y':' x'),s])}});
+ $('o14t').innerHTML='<p>Perpindahan node (mm):</p>'+tbl(['Node','ux','uy'],ND.map((_,i)=>[i+1,u[2*i]*1e3,u[2*i+1]*1e3]))+'<p>Gaya batang (+ tarik, − tekan):</p>'+tbl(['Batang','Gaya (kN)','Tegangan (MPa)','Status'],mf.map((f,i)=>[i+1,f/1e3,f/A/1e6,f>1e-6?'tarik':f<-1e-6?'tekan':'nol']))+'<p>Reaksi tumpuan (N):</p>'+tbl(['DOF','Reaksi'],R);
+ done('truss','Rangka batang '+n+' node: gaya batang (kN) = ['+mf.map(f=>fm(f/1e3)).join(', ')+']')}
+/* ===== Roket ===== */
+function rocket(){const m0=V('k_m'),mp=V('k_p'),T=V('k_T'),isp=V('k_i'),cd=V('k_c'),A=V('k_A'),g0=9.80665,h=0.1;if(mp<=0||mp>=m0)throw Error('Massa propelan harus > 0 dan < massa awal');if(T<=m0*g0)throw Error('Gaya dorong lebih kecil dari berat awal: roket tidak lepas landas');
+ const md=T/(isp*g0),tb=mp/md,F=(t,y)=>{const rho=1.225*Math.exp(-Math.max(y[0],0)/8500);return[y[1],((t<tb?T:0)-0.5*rho*y[1]*Math.abs(y[1])*cd*A)/y[2]-g0,t<tb?-md:0]},r=stepODE(F,[0,0,m0],800,h,'rk');
+ let end=r.t.length;for(let i=20;i<r.t.length;i++)if(r.y[i][0]<0){end=i;break}const t=r.t.slice(0,end),H=r.y.slice(0,end).map(q=>q[0]),Vv=r.y.slice(0,end).map(q=>q[1]),ia=H.indexOf(Math.max(...H)),ib=Math.min(Math.round(tb/h),end-1),dvI=isp*g0*Math.log(m0/(m0-mp));
+ P('o15',[{x:t,y:H.map(q=>q/1e3),name:'Ketinggian (km)',line:{color:'#4ff0ff',width:3}},{x:t,y:Vv,name:'Kecepatan (m/s)',yaxis:'y2',line:{color:'#ffa229',width:3}}],'Profil peluncuran','t (s)','ketinggian (km)',{yaxis2:{title:'kecepatan (m/s)',overlaying:'y',side:'right',gridcolor:'rgba(0,0,0,0)'}});
+ $('o15t').innerHTML=tbl(['Besaran','Nilai'],[['Waktu bakar (s)',tb],['Laju alir massa (kg/s)',md],['\\(\\Delta v\\) ideal Tsiolkovsky (m/s)',dvI],['Kecepatan burnout (m/s)',Vv[ib]],['Ketinggian burnout (km)',H[ib]/1e3],['Kecepatan maks (m/s)',Math.max(...Vv)],['Apogee (km)',H[ia]/1e3],['Waktu apogee (s)',t[ia]],['Rugi gravitasi+drag (m/s)',dvI-Vv[ib]]]);
+ done('rocket','Roket: apogee='+fm(H[ia]/1e3)+' km pada t='+fm(t[ia])+' s; Δv ideal='+fm(dvI)+' m/s, kecepatan burnout='+fm(Vv[ib])+' m/s')}
+/* ===== Fourier ===== */
+function fou(){const fs=V('f_s'),N=Math.round(fs);if(N<8||N>4096)throw Error('fs harus 8 sampai 4096 Hz');const w=[1,2,3].map(i=>[V('f_a'+i),V('f_f'+i)]);
+ const sig=t=>w.reduce((s,[a,f])=>s+a*Math.sin(2*Math.PI*f*t),0),x=Array.from({length:N},(_,n)=>sig(n/fs)),M=N>>1,mag=[];
+ for(let k=0;k<=M;k++){let a=0,b=0;for(let n=0;n<N;n++){const q=2*Math.PI*k*n/N;a+=x[n]*Math.cos(q);b-=x[n]*Math.sin(q)}mag.push(2*Math.hypot(a,b)/N)}
+ const tt=lin2(1000,0,1);P('o6',[{x:tt,y:tt.map(sig),name:'Sinyal asli',line:{color:'#fff',width:1}},{x:x.map((_,n)=>n/fs),y:x,mode:'markers',name:'Sampel',marker:{color:'#ff8a1f',size:4}}],'Domain waktu (1 detik)','t (s)','amplitudo');
+ const fr=mag.map((_,k)=>k);P('o6b',[{x:fr,y:mag,type:'bar',marker:{color:'#00d4ff'}}],'Spektrum amplitudo (DFT)','frekuensi (Hz)','amplitudo');
+ const pk=fr.filter(k=>mag[k]>0.05).map(k=>[k,mag[k]]);$('o6t').innerHTML='<p>Puncak terdeteksi (Nyquist = '+fs/2+' Hz):</p>'+tbl(['Frekuensi (Hz)','Amplitudo'],pk)+(w.some(([,f])=>f>fs/2)?'<p class="w">Ada komponen di atas Nyquist, sehingga muncul sebagai frekuensi palsu (aliasing).</p>':'');
+ done('fou','DFT fs='+fs+' Hz: puncak pada '+pk.map(p=>p[0]+' Hz').join(', '))}
+/* ===== Root-finding ===== */
+function roots(f,m,a,b,tol,n){const R=[];let x,e;
+ if(m=='bis'||m=='fp'){let lo=a,hi=b,fl=f(lo),fh=f(hi),xo=lo;if(fl*fh>0)throw Error('f(a) dan f(b) harus berbeda tanda untuk Bisection/False Position');
+  for(let i=1;i<=n;i++){x=m=='bis'?(lo+hi)/2:hi-fh*(hi-lo)/(fh-fl);const fx=f(x);e=i>1?Math.abs(x-xo):Math.abs(hi-lo);R.push([i,x,fx,e]);if(Math.abs(fx)<tol||e<tol)break;if(fl*fx<0){hi=x;fh=fx}else{lo=x;fl=fx}xo=x}}
+ else if(m=='nr'){x=a;for(let i=1;i<=n;i++){const h=1e-6,d=(f(x+h)-f(x-h))/(2*h);if(!d)throw Error('Newton: turunan nol, metode gagal');const xn=x-f(x)/d;e=Math.abs(xn-x);x=xn;R.push([i,x,f(x),e]);if(e<tol||!isFinite(x))break}}
+ else{let x0=a,x1=b;for(let i=1;i<=n;i++){const f0=f(x0),f1=f(x1);if(f1==f0)throw Error('Secant: f(x0)=f(x1), metode gagal');x=x1-f1*(x1-x0)/(f1-f0);e=Math.abs(x-x1);x0=x1;x1=x;R.push([i,x,f(x),e]);if(e<tol||!isFinite(x))break}}
+ return R}
+const PN={bis:'Bisection',fp:'False Position',nr:'Newton-Raphson',se:'Secant'};let PG={};
+function pg(){const f=mk($('r_f').value,'x'),a=V('r_a'),b=V('r_b'),tol=V('r_t'),n=V('r_n');PG={f:$('r_f').value,h:{},s:[]};const d=[],cv=[];
+ Object.keys(PN).forEach((m,i)=>{let R,er=null,ms=0;const t0=performance.now();try{for(let k=0;k<200;k++)roots(f,m,a,b,tol,n);R=roots(f,m,a,b,tol,n);ms=(performance.now()-t0)/201}catch(e){er=e.message}
+  if(er){PG.s.push([PN[m],'-','-','-','-',ms,'GAGAL: '+er]);PG.h[m]=[];return}
+  PG.h[m]=R;const L=R[R.length-1],ok=L[3]<tol||Math.abs(L[2])<tol;PG.s.push([PN[m],R.length,L[1],Math.abs(L[2]),L[3],ms,ok?'Konvergen':'Belum konvergen']);
+  cv.push({x:R.map(r=>r[0]),y:R.map(r=>Math.log10(Math.max(r[3],1e-17))),name:PN[m],mode:'lines+markers',line:{color:COL[i]}})});
+ $('pgs').innerHTML=tbl(['Metode','Iterasi','Akar','|f(akar)|','Galat akhir','Waktu (ms)','Status'],PG.s);
+ const xs=lin2(300,Math.min(a,b)-.5,Math.max(a,b)+.5);d.push({x:xs,y:xs.map(f),name:'f(x)',line:{color:'#00d4ff'}},{x:xs,y:xs.map(()=>0),name:'y=0',line:{color:'#888',dash:'dot'}});
+ PG.s.forEach((r,i)=>{if(typeof r[2]=='number')d.push({x:[r[2]],y:[0],mode:'markers',name:r[0],marker:{size:11,color:COL[i]}})});
+ P('p1',d,'Fungsi dan akar','x','f(x)');P('p2',cv,'Konvergensi: log10(galat) per iterasi (makin turun makin baik)','iterasi','log10 galat');hist();
+ done('pg','Root-finding '+PG.f+': '+PG.s.map(r=>r[0]+' '+r[1]+' iterasi, akar='+fm(r[2])+' ('+r[6]+')').join('; '))}
+function hist(){if(!PG.h)return;const R=PG.h[$('pm').value]||[];$('pgt').innerHTML=R.length?tbl(['Iterasi','\\(x\\)','\\(f(x)\\)','Galat'],R):'<p class="w">Tidak ada data (metode gagal atau belum dijalankan).</p>'}
+function csv(){if(!PG.h)return toast('Jalankan perbandingan dulu',1);let o='metode,iterasi,x,f(x),galat\n';Object.keys(PG.h).forEach(m=>PG.h[m].forEach(r=>o+=PN[m]+','+r.join(',')+'\n'));$('csvx').value=o;$('csvx').select();toast('CSV siap disalin dari kotak teks')}
+/* ===== Dashboard ===== */
+const RM=['Fondasi Matematika','Persamaan Diferensial','Aljabar Linear & Metode Matriks','Kalkulus Vektor & Multivariabel','Analisis Numerik','Metode Komputasi','Optimisasi & Aplikasi Teknik','Dasar Metode Elemen Hingga (FEM)','Studi Kasus Aerospace'];
+const ST=['Belum dimulai','Sedang dipelajari','Selesai'];
+const TB=[['home','Dashboard'],['run','Cara Menjalankan'],['lab','Lab Interaktif'],['pg','Playground'],['case','Studi Kasus'],['quiz','Kuis'],['gl','Glosarium'],['res','Resume'],['about','Tentang & Update']];
+function show(id){TB.forEach(([k,n])=>{$('t-'+k).classList.toggle('on',k==id);});[...$('tabs').children].forEach((b,i)=>b.classList.toggle('on',TB[i][0]==id));
+ S.vis=[id,...S.vis.filter(v=>v!=id)].slice(0,5);save();if(id=='home')home();if(id=='res')resume();if(id=='gl')gl();tx();scrollTo(0,0)}
+function home(){const c=RM.filter((_,i)=>S.st[i]==2).length,cur=RM.findIndex((_,i)=>S.st[i]==1),ex=Object.keys(S.ok).length;
+ $('stats').innerHTML=[['Total modul',RM.length],['Selesai',c],['Topik saat ini',cur<0?'-':RM[cur]],['Latihan selesai',ex+'/'+QZ.length],['Progres',Math.round(c/RM.length*100)+'%']].map(([a,b])=>'<div>'+a+'<b style="font-size:'+(String(b).length>8?'14px':'24px')+'">'+b+'</b></div>').join('');
+ $('pb').style.width=c/RM.length*100+'%';
+ $('rm').innerHTML=RM.map((r,i)=>'<div class="rm"><span>'+(i+1)+'. '+r+'</span><select onchange="S.st['+i+']=+this.value;save();home()">'+ST.map((s,j)=>'<option value="'+j+'"'+((S.st[i]||0)==j?' selected':'')+'>'+s+'</option>').join('')+'</select></div>').join('');
+ $('qa').innerHTML=[['gl','Formula & Glosarium'],['lab','Kalkulator Interaktif'],['pg','Numerical Playground'],['lab','Simulasi Teknik'],['quiz','Soal Latihan'],['home','Catatan'],['res','Resume'],['home','Progress Tracker']].map(([k,n])=>'<button class="b x" onclick="show(\''+k+'\')">'+n+'</button>').join('');
+ $('rv').innerHTML=S.vis.map(v=>TB.find(t=>t[0]==v)[1]).join(', ')||'-';
+ $('bm').innerHTML=S.bm.length?S.bm.map(i=>'<div><b>'+GL[i][0]+'</b></div>').join(''):'<small>Belum ada. Klik ☆ di Glosarium.</small>';
+ $('notes').value=S.notes;tx()}
+$('notes').oninput=e=>{S.notes=e.target.value;save()};
+function exp(){$('jx').value=JSON.stringify(S,null,1);$('jx').select();toast('Salin JSON dari kotak teks sebagai cadangan')}
+function imp(){try{const o=JSON.parse($('jx').value);if(typeof o!='object'||!o.st)throw 0;S=Object.assign({st:{},notes:'',ok:{},vis:[],bm:[],last:{}},o);save();home();toast('Progres berhasil diimpor')}catch(e){toast('JSON tidak valid',1)}}
+function rst(){const b=$('rs');if(b.dataset.c){S={st:{},notes:'',ok:{},vis:[],bm:[],last:{}};save();home();b.textContent='Reset progres';delete b.dataset.c;toast('Progres dihapus')}else{b.dataset.c=1;b.textContent='Klik lagi untuk MENGHAPUS semua';setTimeout(()=>{delete b.dataset.c;b.textContent='Reset progres'},5000)}}
+/* ===== Resume ===== */
+function resume(){const k=Object.keys(S.last);$('rl').innerHTML='<h3>Hasil percobaan terakhir Anda</h3>'+(k.length?'<ul>'+k.map(x=>'<li>'+S.last[x]+'</li>').join('')+'</ul>':'<p class="w">Belum ada percobaan. Jalankan simulasi di Lab Interaktif atau Playground, lalu kembali ke sini.</p>')}
+/* ===== Kuis ===== */
+const QZ=[['Metode akar mana yang pasti konvergen bila \\(f(a)\\) dan \\(f(b)\\) berbeda tanda?',['Newton-Raphson','Bisection','Secant'],1,'Bisection selalu menyempitkan interval yang mengurung akar.'],['Orde akurasi global metode Runge-Kutta klasik (RK4)?',['1','2','4'],2,'Galat global RK4 sebanding dengan \\(h^4\\), yaitu \\(O(h^4)\\).'],['Sinyal disampel pada 100 Hz. Frekuensi tertinggi tanpa aliasing?',['25 Hz','50 Hz','100 Hz'],1,'Batas Nyquist \\(f_N=f_s/2\\).'],['Determinan matriks koefisien \\(\\det(A)=0\\) berarti?',['Solusi unik','Matriks singular','Matriks identitas'],1,'Tidak ada solusi tunggal; pada struktur berarti kekakuan kurang.'],['Learning rate terlalu besar pada gradient descent menyebabkan?',['Divergen/berosilasi','Lebih akurat','Tidak ada efek'],0,'Langkah melompati minimum dan makin menjauh.'],['Transformasi Laplace dari fungsi step \\(f(t)=1\\) adalah?',['\\(\\frac{1}{s}\\)','\\(s\\)','\\(\\frac{1}{s^2}\\)'],0,'Karena \\(\\int_0^\\infty e^{-st}\\,dt=\\frac{1}{s}\\).'],['Pada BVP, kondisi yang diketahui berada di mana?',['Hanya di t=0','Di kedua ujung domain','Di tengah domain'],1,'Berbeda dari IVP, nilai diberikan di batas-batas.'],['Divergensi positif pada suatu titik medan vektor berarti?',['Titik itu sumber (aliran keluar)','Aliran berputar','Aliran tidak berubah'],0,'Divergensi mengukur aliran netto keluar; curl mengukur rotasi.']];
+function quiz(){$('qs').textContent='Skor: '+Object.keys(S.ok).length+' dari '+QZ.length+' benar';$('qq').innerHTML=QZ.map((q,i)=>'<div class="q c"><b>'+(i+1)+'. '+q[0]+'</b>'+q[1].map((o,j)=>'<button onclick="ans('+i+','+j+',this)">'+o+'</button>').join('')+'<small id="qf'+i+'" class="'+(S.ok[i]?'ok':'')+'">'+(S.ok[i]?'Benar. '+q[3]:'')+'</small></div>').join('')}
+function ans(i,j,b){const q=QZ[i],f=$('qf'+i);if(j==q[2]){S.ok[i]=1;save();f.className='ok';f.textContent='Benar. '+q[3];$('qs').textContent='Skor: '+Object.keys(S.ok).length+' dari '+QZ.length+' benar'}else{f.className='w';f.textContent='Belum tepat, coba lagi.'}tx()}
+/* ===== Glosarium ===== */
+const GL=[['Iterasi','Pengulangan langkah hitung sampai hasil cukup akurat.'],['Konvergensi','Hasil iterasi makin dekat ke jawaban yang benar.'],['Divergensi','Hasil iterasi makin menjauh dari jawaban (metode gagal).'],['Toleransi (tolerance)','Batas galat yang boleh diterima untuk berhenti.'],['Galat (error)','Selisih antara hasil numerik dan nilai sebenarnya.'],['Truncation error','Galat karena rumus tak hingga dipotong menjadi pendekatan.'],['Round-off error','Galat karena komputer menyimpan angka dengan digit terbatas.'],['Step size (\\(h\\))','Ukuran langkah pada simulasi atau diskretisasi.'],['Orde akurasi','Seberapa cepat galat mengecil saat \\(h\\) dikecilkan (orde-4: \\(h\\to\\frac{h}{2}\\) membuat galat \\(\\div 16\\)).'],['ODE','Ordinary Differential Equation: persamaan yang memuat turunan satu variabel bebas, biasanya waktu.'],['Initial Value Problem (IVP)','ODE dengan kondisi awal diketahui pada \\(t=0\\).'],['Boundary Value Problem (BVP)','ODE dengan kondisi diketahui di dua ujung (misalnya balok tertumpu di dua titik).'],['Runge-Kutta 4 (RK4)','Metode ODE orde-4 yang memakai empat estimasi kemiringan per langkah: \\(y_{n+1}=y_n+\\tfrac{1}{6}(k_1+2k_2+2k_3+k_4)\\).'],['Euler / Heun','Metode ODE sederhana orde-1 / orde-2. Euler: \\(y_{n+1}=y_n+h\\,f(t_n,y_n)\\).'],['Stabilitas','Apakah galat tetap terkendali atau membesar saat simulasi berjalan.'],['Bracketing','Mengurung akar dalam interval \\([a,b]\\) yang \\(f\\)-nya berbeda tanda.'],['Singular matrix','Matriks tanpa invers (determinan \\(\\det A=0\\)).'],['Pivoting','Menukar baris agar pembagi tidak nol atau kecil, menjaga ketelitian.'],['Eigenvalue / eigenvector','Nilai dan arah khusus matriks, \\(A\\mathbf{v}=\\lambda\\mathbf{v}\\); pada struktur: frekuensi alami dan bentuk getar.'],['Gradient','Vektor arah kenaikan paling curam suatu fungsi, ditulis \\(\\nabla f\\).'],['Learning rate','Besar langkah pada gradient descent.'],['Objective function','Fungsi yang ingin diminimalkan atau dimaksimalkan (misalnya berat struktur).'],['Damping ratio (\\(\\zeta\\))','Ukuran redaman getaran; \\(\\zeta&lt;1\\) berarti masih bergetar.'],['Natural frequency (\\(\\omega_n\\))','Frekuensi getar bebas suatu sistem, \\(\\omega_n=\\sqrt{k/m}\\).'],['Resonansi','Respons membesar saat frekuensi pemicu mendekati frekuensi alami.'],['DFT / FFT','Discrete / Fast Fourier Transform: menguraikan sinyal menjadi frekuensi penyusunnya.'],['Aliasing','Frekuensi tinggi tampak sebagai frekuensi rendah palsu karena sampling terlalu jarang.'],['Nyquist frequency','Setengah dari frekuensi sampling, \\(f_N=\\frac{f_s}{2}\\); batas frekuensi yang dapat dibaca benar.'],['Finite Element Method (FEM)','Membagi struktur menjadi elemen kecil lalu menyusun sistem linear \\(K\\mathbf{u}=\\mathbf{F}\\).'],['Laplace transform','Mengubah ODE menjadi persamaan aljabar di domain \\(s\\): \\(F(s)=\\int_0^\\infty f(t)e^{-st}\\,dt\\).'],['Least squares','Metode memilih kurva yang meminimalkan jumlah kuadrat selisih terhadap data: \\(\\min\\sum_i (y_i-\\hat{y}_i)^2\\).'],['\\(R^2\\) (koefisien determinasi)','Seberapa besar variasi data dijelaskan model; \\(R^2=1\\) berarti sempurna.'],['Overfitting','Model terlalu rumit sehingga mengikuti derau data, bukan tren sebenarnya.'],['Finite difference (beda hingga)','Mengganti turunan dengan selisih nilai pada titik-titik grid.'],['Stiffness matrix (\\(K\\))','Matriks kekakuan; menghubungkan perpindahan node dengan gaya (\\(K\\mathbf{u}=\\mathbf{F}\\)).'],['Divergence (\\(\\nabla\\cdot\\mathbf{F}\\))','Ukuran seberapa besar medan menyebar keluar dari suatu titik.'],['Curl (\\(\\nabla\\times\\mathbf{F}\\))','Ukuran rotasi lokal medan vektor.'],['Taper','Penampang yang mengecil bertahap, misalnya sayap yang menyempit ke ujung.'],['Dirichlet boundary condition','Kondisi batas berupa nilai fungsi yang ditetapkan (misalnya \\(y(0)=0\\)).'],['Condition number (bilangan kondisi)','Ukuran sensitivitas solusi terhadap perubahan kecil data, \\(\\kappa(A)=\\|A\\|\\,\\|A^{-1}\\|\\); besar = rawan galat.'],['Line integral (integral garis)','Penjumlahan komponen medan searah lintasan, \\(\\int_C \\mathbf{F}\\cdot d\\mathbf{r}\\); di fisika berarti kerja atau sirkulasi.'],['Teorema Green','Integral garis sepanjang kurva tertutup = integral curl di area di dalamnya: \\(\\oint_C \\mathbf{F}\\cdot d\\mathbf{r}=\\iint_D (\\nabla\\times\\mathbf{F})_z\\,dA\\).'],['Flux (fluks)','Jumlah aliran medan yang menembus suatu permukaan: \\(\\Phi=\\iint \\mathbf{F}\\cdot\\mathbf{n}\\,dS\\).'],['Truss (rangka batang)','Struktur dari batang-batang yang hanya menerima gaya tarik atau tekan.'],['Persamaan Tsiolkovsky','Δv ideal roket: \\(\\Delta v=I_{sp}\\,g_0\\ln\\frac{m_0}{m_f}\\).'],['Isp (specific impulse)','Efisiensi mesin roket dalam detik; makin besar makin hemat propelan.'],['Drag','Gaya hambat udara yang melawan gerak; naik dengan kuadrat kecepatan: \\(F_D=\\tfrac{1}{2}\\rho v^2 C_d A\\).']];
+function gl(){const q=$('gs').value.toLowerCase();$('gl').innerHTML=GL.map((g,i)=>[g,i]).filter(([g])=>(g[0]+g[1]).toLowerCase().includes(q)).map(([g,i])=>'<div class="gl"><span style="cursor:pointer;color:var(--or)" onclick="bk('+i+')">'+(S.bm.includes(i)?'★':'☆')+'</span><div><b>'+g[0]+'</b><br>'+g[1]+'</div></div>').join('')||'<p class="w">Istilah tidak ditemukan.</p>';tx()}
+function bk(i){S.bm=S.bm.includes(i)?S.bm.filter(x=>x!=i):[...S.bm,i];save();gl()}
+/* ===== Init ===== */
+$('tabs').innerHTML=TB.map(([k,n])=>'<button onclick="show(\''+k+'\')">'+n+'</button>').join('');
+quiz();show('home');
+if(!window.Plotly)toast('Plotly belum termuat (perlu internet). Grafik tidak tampil, tabel tetap berfungsi.',1);
+</script></body></html>
