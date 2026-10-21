@@ -4,7 +4,7 @@
 <title>Advanced Engineering Mathematics Lab</title>
 <script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}}</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.min.js" async></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.35.2/plotly.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.35.2/plotly.min.js" onerror="(function(){var s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/plotly.js-dist-min@2.35.2/plotly.min.js';s.onerror=function(){var t=document.createElement('script');t.src='https://unpkg.com/plotly.js-dist-min@2.35.2/plotly.min.js';document.head.appendChild(t)};document.head.appendChild(s)})()"></script>
 <style>
 :root{--bg:#16257a;--pn:#233596;--pn2:#2f45b8;--tx:#ffffff;--mu:#d3dcff;--cy:#4ff0ff;--bl:#7a94ff;--or:#ffa229;--mg:#ff5cb0;--gr:rgba(190,205,255,.25);--ok:#4dffa8;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media(prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#eef2ff;--pn:#fff;--pn2:#e0e8ff;--tx:#0b1535;--mu:#41507d;--cy:#0369a1;--or:#c2410c;--mg:#be185d;--ok:#047857;--bl:#2744c4;--gr:rgba(30,60,160,.16)}}
@@ -637,5 +637,5 @@ function bk(i){S.bm=S.bm.includes(i)?S.bm.filter(x=>x!=i):[...S.bm,i];save();gl(
 /* ===== Init ===== */
 $('tabs').innerHTML=TB.map(([k,n])=>'<button onclick="show(\''+k+'\')">'+n+'</button>').join('');
 quiz();show('home');
-if(!window.Plotly)toast('Plotly belum termuat (perlu internet). Grafik tidak tampil, tabel tetap berfungsi.',1);
+setTimeout(function(){if(!window.Plotly)toast('Plotly belum termuat. Periksa internet atau pemblokiran CDN; tabel tetap berfungsi.',1)},2500);
 </script></body></html>
